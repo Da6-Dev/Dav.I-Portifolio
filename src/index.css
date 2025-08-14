@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* Animação para o ícone da estrela */
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15); /* Levemente maior */
+    opacity: 0.8; /* Levemente mais transparente */
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s infinite ease-in-out; /* 4 segundos, infinito, com suavização */
+}
+
+/* Opcional: Ajuste para que o scroll do conteúdo não sobreponha a navbar */
+body {
+  overflow-x: hidden; /* Evita scroll horizontal indesejado por conta da navbar fixa */
+}
+
+/* Certifique-se de que o elemento main no App.jsx tenha a margem esquerda adequada */
+/* Já fizemos isso no App.jsx, apenas um lembrete. */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #0f172a; /* Cor de fundo base (slate-900) */
+}
+
+/* 2. Definir os keyframes da nossa animação */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3. Criar uma classe para usar a animação */
+/* Usaremos esta classe no nosso JSX para ativar a animação */
+.animate-fade-in-up {
+  /* `forwards` mantém o estado final da animação (opacidade 1) */
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+/* Opcional: Ajuste para que o scroll não sobreponha a navbar */
+body {
+  overflow-x: hidden;
+}
+
+/* src/index.css */
+
+/* ... (seu código existente com @tailwind e a animação fade-in-up) ... */
+
+/* Animação para preencher a barra de progresso */
+@keyframes fill-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-fill-bar {
+  /* `transform-origin-left` garante que a barra cresça da esquerda para a direita */
+  transform-origin: left;
+  animation: fill-bar 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes move-blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+/* Classe para o container do fundo */
+.aurora-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Garante que as bolhas não vazem */
+  filter: blur(40px); /* O blur principal que cria o efeito */
+}
+
+/* Estilo base para cada bolha de cor */
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: move-blob 20s infinite ease-in-out;
+}
+
+/* Define as variáveis de cor para o tema claro (padrão) */
+:root {
+  --color-bg: #f1f5f9; /* slate-100 */
+  --color-bg-secondary: #ffffff; /* white */
+  --color-bg-card: rgba(255, 255, 255, 0.7); /* branco com transparência */
+  --color-bg-input: #e2e8f0; /* slate-200 */
+  
+  --color-text-primary: #1e293b; /* slate-800 */
+  --color-text-secondary: #475569; /* slate-600 */
+  
+  --color-border: #cbd5e1; /* slate-300 */
+  --color-border-strong: #94a3b8; /* slate-400 */
+  
+  --color-accent: #3b82f6; /* blue-500 */
+  --color-accent-hover: #2563eb; /* blue-600 */
+  --color-accent-text: #ffffff; /* white */
+  
+  --color-gradient-from: #60a5fa; /* blue-400 */
+  --color-gradient-to: #5eead4; /* teal-300 */
+}
+
+/* Redefine as mesmas variáveis quando o tema escuro está ativo */
+html.dark {
+  --color-bg: #0f172a; /* slate-900 */
+  --color-bg-secondary: #1e293b; /* slate-800 */
+  --color-bg-card: rgba(30, 41, 59, 0.5); /* slate-800 com transparência */
+  --color-bg-input: #1e293b; /* slate-800 */
+  
+  --color-text-primary: #f1f5f9; /* slate-100 */
+  --color-text-secondary: #94a3b8; /* slate-400 */
+
+  --color-border: #334155; /* slate-700 */
+  --color-border-strong: #475569; /* slate-600 */
+
+  --color-accent: #3b82f6; /* blue-500 */
+  --color-accent-hover: #2563eb; /* blue-600 */
+  --color-accent-text: #ffffff; /* white */
+
+  --color-gradient-from: #60a5fa; /* blue-400 */
+  --color-gradient-to: #5eead4; /* teal-300 */
+}
+
+/* Transição suave de cores para uma troca de tema elegante */
+body, button, input, textarea, a, div {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
