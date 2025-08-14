@@ -8,7 +8,7 @@ const projectsData = [
     id: 1,
     title: "Roomflow",
     description: "Um sistema de reservas para pousadas, com interface intuitiva e funcionalidades de gerenciamento de quartos, clientes e pagamentos. Desenvolvido com foco em usabilidade e design moderno.",
-    imageUrl: "../public/roomflow.png",
+    imageUrl: "roomflow.png",
     codeUrl: "https://github.com/Da6-Dev/RoomFlow",
     tags: ["MaterialUI", "PHP", "JavaScript", "MySQL"]
   },
@@ -16,7 +16,7 @@ const projectsData = [
     id: 2,
     title: "Ringo Fighter",
     description: "Um jogo desenvolvido para a BabyJam de 2025 da DEV-U.",
-    imageUrl: "../public/Ringo.png",
+    imageUrl: "Ringo.png",
     liveUrl: "https://mateus475.itch.io/ringo-fighter-devu",
     tags: ["Unity", "C#"]
   },
@@ -24,7 +24,7 @@ const projectsData = [
     id: 3,
     title: "Shattered Mine",
     description: "Jogo desenvolvido para Game Dev Toolkit 2025, onde os jogadores exploram uma mina misteriosa, enfrentando desafios para descobrir seus segredos.  ",
-    imageUrl: "../public/ShatteredMine.png",
+    imageUrl: "ShatteredMine.png",
     liveUrl: "https://heartyxpunk.itch.io/shattered-mine",
     tags: ["Unity", "C#"]
   }
