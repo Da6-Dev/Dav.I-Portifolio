@@ -13,7 +13,9 @@
         "subheading3": "Desenvolvedor Unity",
         "subheading4": "Transformando Ideias em Realidade",
         "description": "Sou um desenvolvedor apaixonado por criar experiências digitais envolventes e funcionais. Vamos construir algo incrível juntos!",
-        "button": "Veja meus projetos"
+        "button": "Veja meus projetos",
+        "likeButton": "Gostei!",
+        "likeButtonThanks": "Obrigado!"
     },
     "about": {
         "title": "Sobre Mim",

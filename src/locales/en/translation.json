@@ -13,7 +13,9 @@
         "subheading3": "Unity Developer",
         "subheading4": "Turning Ideas into Reality",
         "description": "I'm a passionate developer focused on creating engaging and functional digital experiences. Let's build something amazing together!",
-        "button": "See my projects"
+        "button": "See my projects",
+        "likeButton": "Like it!",
+        "likeButtonThanks": "Thanks!"
     },
     "about": {
         "title": "About Me",

@@ -1,17 +1,18 @@
+// src/pages/home.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TypeAnimation } from 'react-type-animation';
 import { ArrowRightIcon, HeartIcon } from '@heroicons/react/24/solid';
 import Stats from '../components/Stats';
-import { incrementLike } from '../firebase'; // Importa a nova função de serviço
+import { incrementLike } from '../firebase';
 
 function Home() {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
   const [hasLiked, setHasLiked] = useState(false);
-  const [isLiking, setIsLiking] = useState(false); // Adiciona estado de "carregando"
+  const [isLiking, setIsLiking] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('portfolio-liked') === 'true') {
@@ -20,13 +21,11 @@ function Home() {
   }, []);
 
   const handleLike = async () => {
-    // Previne múltiplos cliques enquanto a operação está em andamento
     if (hasLiked || isLiking) return;
 
     setIsLiking(true);
     const success = await incrementLike();
 
-    // Só atualiza a UI e o localStorage se o Firebase confirmar o sucesso
     if (success) {
       localStorage.setItem('portfolio-liked', 'true');
       setHasLiked(true);
@@ -55,7 +54,8 @@ function Home() {
           </Link>
           <button onClick={handleLike} disabled={hasLiked || isLiking} className="inline-flex items-center justify-center gap-2 bg-[var(--color-bg-secondary)] border border-[var(--color-border)] font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
             <HeartIcon className={`w-6 h-6 transition-colors ${hasLiked ? 'text-red-500' : 'text-[var(--color-text-secondary)]'}`} />
-            {hasLiked ? 'Obrigado!' : 'Gostei!'}
+            {/* A MUDANÇA ESTÁ AQUI */}
+            {hasLiked ? t('home.likeButtonThanks') : t('home.likeButton')}
           </button>
         </div>
         <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '1100ms' }}>
