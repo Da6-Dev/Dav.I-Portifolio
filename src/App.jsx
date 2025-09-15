@@ -1,8 +1,7 @@
+// src/App.jsx
 import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './components/navbar';
-
-// Importa a função de serviço necessária do seu arquivo firebase.js
 import { incrementView } from './firebase';
 
 function App() {
@@ -11,30 +10,30 @@ function App() {
 
   useEffect(() => {
     const countUniqueView = async () => {
-      // **A MUDANÇA ESTÁ AQUI**
-      // Verificamos no localStorage se este navegador já visitou o site antes.
       const viewed = localStorage.getItem('portfolio-viewed');
-
-      // Se NUNCA visitou antes...
       if (!viewed) {
-        // ...chame a função para incrementar a visualização no Firebase.
         const success = await incrementView();
-        
-        // Se a operação com o Firebase for bem-sucedida...
         if (success) {
-          // ...marque no localStorage que este navegador já foi contado.
           localStorage.setItem('portfolio-viewed', 'true');
         }
       }
     };
-
     countUniqueView();
-  }, []); // O array vazio [] garante que isso rode apenas uma vez na primeira vez que o App carrega
+  }, []);
+
+  // **CLASSES DE LAYOUT ATUALIZADAS**
+  // Em telas pequenas (mobile), adiciona um padding-bottom (pb-24)
+  // Em telas médias e maiores (desktop), adiciona a margem à esquerda (md:ml-24)
+  const mainClasses = `
+    transition-all duration-300
+    pb-24 
+    ${!isHomePage ? 'md:ml-24' : ''}
+  `;
 
   return (
     <div className="bg-[var(--color-bg)] text-[var(--color-text-primary)] min-h-screen">
       <Navbar />
-      <main className={!isHomePage ? 'ml-24' : ''}>
+      <main className={mainClasses}>
         <Outlet />
       </main>
     </div>
