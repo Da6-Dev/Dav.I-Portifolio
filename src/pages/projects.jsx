@@ -6,7 +6,7 @@ import { SiGithub } from 'react-icons/si';
 
 const GITHUB_USERNAME = "Da6-Dev";
 
-// Componente para o estado de "carregando" (nenhuma mudança aqui)
+// Componente para o estado de "carregando"
 const ProjectCardSkeleton = () => (
     <div className="bg-[var(--color-bg-card)] backdrop-blur-sm border border-[var(--color-border)] rounded-2xl p-6 flex flex-col gap-4 animate-pulse">
         <div className="h-48 bg-[var(--color-border)] rounded-lg"></div>
@@ -19,7 +19,25 @@ const ProjectCardSkeleton = () => (
 );
 
 const ProjectCard = ({ project, index }) => {
-    const { t } = useTranslation(); // Use o hook aqui também para os botões
+    const { t } = useTranslation();
+
+    // **A CORREÇÃO ESTÁ AQUI**
+    // Usamos `project.default_branch` para pegar o nome da branch principal (main, master, etc.)
+    const imageUrl = `https://raw.githubusercontent.com/${project.owner.login}/${project.name}/${project.default_branch}/cover.png`;
+    
+    // Tentamos também com .jpg como alternativa
+    const fallbackImageUrl = `https://raw.githubusercontent.com/${project.owner.login}/${project.name}/${project.default_branch}/cover.jpg`;
+
+    const handleImageError = (e) => {
+        // Se cover.png falhar, tenta cover.jpg
+        if (e.target.src !== fallbackImageUrl) {
+            e.target.src = fallbackImageUrl;
+        } else {
+            // Se ambos falharem, mostra a imagem genérica
+            e.target.style.backgroundColor = 'var(--color-border)';
+            e.target.src = "https://via.placeholder.com/600x315.png?text=Image+Not+Found";
+        }
+    };
 
     return (
         <div
@@ -28,10 +46,10 @@ const ProjectCard = ({ project, index }) => {
         >
             <div className="relative h-56 w-full overflow-hidden">
                 <img
-                    src={`https://raw.githubusercontent.com/${GITHUB_USERNAME}/${project.name}/main/cover.png`}
+                    src={imageUrl}
                     alt={`Capa do projeto ${project.name}`}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    onError={(e) => { e.target.onerror = null; e.target.style.backgroundColor = 'var(--color-border)'; e.target.src = "https://via.placeholder.com/600x315.png?text=Image+Not+Found"; }}
+                    onError={handleImageError}
                 />
             </div>
 
@@ -61,6 +79,8 @@ const ProjectCard = ({ project, index }) => {
         </div>
     );
 };
+
+// ... O resto do componente (Projects) continua o mesmo
 
 function Projects() {
     const { t } = useTranslation();
