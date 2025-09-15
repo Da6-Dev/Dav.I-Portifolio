@@ -1,10 +1,8 @@
-/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Roboto+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
-/* 1. FONTES DO GOOGLE */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Roboto+Mono:wght@400;500&display=swap');
 
-/* 2. VARIÁVEIS DE COR (NOVA PALETA) */
+/* 1. VARIÁVEIS DE COR (NOVA PALETA) */
 :root {
   /* Tema Claro */
   --color-bg: #f5f5f5; /* neutral-100 */
@@ -43,7 +41,7 @@ html.dark {
   --color-accent-text: #ffffff;
 }
 
-/* 3. ESTILOS GLOBAIS E TRANSIÇÕES */
+/* 2. ESTILOS GLOBAIS E TRANSIÇÕES */
 body {
   font-family: 'Inter', sans-serif; /* Nova fonte principal */
   background-color: var(--color-bg);
@@ -59,7 +57,7 @@ body {
 }
 
 
-/* 4. ANIMAÇÕES (As que você já usa + novas) */
+/* 3. ANIMAÇÕES (As que você já usa + novas) */
 @keyframes fade-in-up {
   from {
     opacity: 0;
