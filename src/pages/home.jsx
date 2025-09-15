@@ -3,29 +3,33 @@ import React from 'react';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
-import { useTranslation } from 'react-i18next'; // 1. Importe o hook
+import { useTranslation } from 'react-i18next';
 
 function Home() {
-  const { t } = useTranslation(); // 2. Inicialize o hook
+  // 1. Pegamos o objeto `i18n` para saber o idioma atual
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center text-center p-4">
       <div className="max-w-4xl w-full">
         <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
           <img
-            src="img-perfil.jpg"
+            src="img-perfil.jpg" // Sua foto de perfil
             alt="Foto de Perfil"
             className="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-[var(--color-border-strong)] shadow-lg object-cover"
           />
         </div>
         <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-          {/* 3. Use a função t() com as chaves do JSON */}
           <h1 className="text-5xl md:text-7xl font-extrabold text-[var(--color-text-primary)] mb-3">
             {t('home.greeting')}
           </h1>
         </div>
         <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '500ms' }}>
           <TypeAnimation
+            // 2. Adicionamos a `key` com o idioma atual.
+            // Isso força a recriação do componente quando o idioma muda.
+            key={currentLanguage}
             sequence={[
               t('home.subheading1'), 2000,
               t('home.subheading2'), 2000,

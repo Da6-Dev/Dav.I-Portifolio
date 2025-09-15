@@ -11,64 +11,42 @@ import {
     RocketLaunchIcon
 } from '@heroicons/react/24/outline';
 
-const TimelineItem = ({ item }) => (
-    <div className="relative pl-8 sm:pl-32 py-6 group">
-        <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-[var(--color-border)] sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-[var(--color-accent)] after:border-4 after:box-content after:border-[var(--color-border)] after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
-            <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-28 h-6 mb-3 sm:mb-0 text-[var(--color-text-secondary)] bg-[var(--color-bg-secondary)] rounded-full">{item.date}</time>
-            <div className="text-xl font-bold text-[var(--color-text-primary)]">{item.title}</div>
+const TimelineItem = ({ item, isLast }) => (
+    <div className="relative flex gap-x-6">
+        {/* Coluna da Esquerda: Ícone e Linha Vertical */}
+        <div className="flex h-full w-12 flex-col items-center">
+            <div className="grid place-items-center w-12 h-12 rounded-full bg-[var(--color-bg-secondary)] border-2 border-[var(--color-accent)] text-[var(--color-accent)]">
+                {/* Clona o ícone para aplicar novas classes */}
+                {React.cloneElement(item.icon, { className: 'w-6 h-6' })}
+            </div>
+            {/* Renderiza a linha apenas se não for o último item */}
+            {!isLast && <div className="w-px flex-1 bg-[var(--color-border)]" />}
         </div>
-        <div className="text-[var(--color-text-secondary)]">{item.description}</div>
+
+        {/* Coluna da Direita: Conteúdo de Texto */}
+        {/* A classe `min-w-0` é crucial para forçar a quebra de texto em contêineres flex */}
+        <div className="flex-1 min-w-0 pb-12">
+            <p className="text-sm font-semibold text-[var(--color-accent)]">{item.date}</p>
+            <h4 className="text-xl font-bold text-[var(--color-text-primary)] mt-1 break-words">{item.title}</h4>
+            <p className="text-[var(--color-text-secondary)] mt-2">{item.description}</p>
+        </div>
     </div>
 );
 
 function About() {
     const { t } = useTranslation();
 
-    // Dados da filosofia de trabalho traduzidos
     const philosophyData = [
-        {
-            icon: <UserCircleIcon className="w-8 h-8 text-[var(--color-accent)]" />,
-            title: t('about.philosophy1Title'),
-            description: t('about.philosophy1Desc')
-        },
-        {
-            icon: <PuzzlePieceIcon className="w-8 h-8 text-[var(--color-accent)]" />,
-            title: t('about.philosophy2Title'),
-            description: t('about.philosophy2Desc')
-        },
-        {
-            icon: <ChatBubbleLeftRightIcon className="w-8 h-8 text-[var(--color-accent)]" />,
-            title: t('about.philosophy3Title'),
-            description: t('about.philosophy3Desc')
-        }
+        { icon: <UserCircleIcon />, title: t('about.philosophy1Title'), description: t('about.philosophy1Desc') },
+        { icon: <PuzzlePieceIcon />, title: t('about.philosophy2Title'), description: t('about.philosophy2Desc') },
+        { icon: <ChatBubbleLeftRightIcon />, title: t('about.philosophy3Title'), description: t('about.philosophy3Desc') },
     ];
 
-    // Dados da jornada profissional traduzidos
     const timelineData = [
-        {
-            icon: <AcademicCapIcon />,
-            date: t('about.journey1Date'),
-            title: t('about.journey1Title'),
-            description: t('about.journey1Desc')
-        },
-        {
-            icon: <AcademicCapIcon />,
-            date: t('about.journey2Date'),
-            title: t('about.journey2Title'),
-            description: t('about.journey2Desc')
-        },
-        {
-            icon: <RocketLaunchIcon />,
-            date: t('about.journey3Date'),
-            title: t('about.journey3Title'),
-            description: t('about.journey3Desc')
-        },
-        {
-            icon: <BriefcaseIcon />,
-            date: t('about.journey4Date'),
-            title: t('about.journey4Title'),
-            description: t('about.journey4Desc')
-        }
+        { icon: <AcademicCapIcon />, date: t('about.journey1Date'), title: t('about.journey1Title'), description: t('about.journey1Desc') },
+        { icon: <AcademicCapIcon />, date: t('about.journey2Date'), title: t('about.journey2Title'), description: t('about.journey2Desc') },
+        { icon: <RocketLaunchIcon />, date: t('about.journey3Date'), title: t('about.journey3Title'), description: t('about.journey3Desc') },
+        { icon: <BriefcaseIcon />, date: t('about.journey4Date'), title: t('about.journey4Title'), description: t('about.journey4Desc') },
     ];
 
     return (
@@ -76,11 +54,7 @@ function About() {
             {/* Seção Principal: Foto e Biografia */}
             <div className="grid md:grid-cols-3 gap-12 items-center">
                 <div className="md:col-span-1 opacity-0 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
-                    <img
-                        src="img-perfil.jpg"
-                        alt="Foto de Perfil"
-                        className="rounded-3xl shadow-xl w-full h-auto border-4 border-[var(--color-border)]"
-                    />
+                    <img src="img-perfil.jpg" alt="Foto de Perfil" className="rounded-3xl shadow-xl w-full h-auto border-4 border-[var(--color-border)]" />
                 </div>
                 <div className="md:col-span-2 opacity-0 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
                     <h2 className="text-4xl font-bold text-[var(--color-text-primary)] mb-4">{t('about.title')}</h2>
@@ -99,12 +73,8 @@ function About() {
                 <h3 className="opacity-0 animate-fade-in-up text-3xl font-bold text-[var(--color-text-primary)] mb-12" style={{ animationDelay: '400ms' }}>{t('about.philosophyTitle')}</h3>
                 <div className="grid md:grid-cols-3 gap-8">
                     {philosophyData.map((item, index) => (
-                        <div
-                            key={item.title}
-                            className="opacity-0 animate-fade-in-up p-8 bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-lg shadow-lg"
-                            style={{ animationDelay: `${500 + index * 150}ms` }}
-                        >
-                            <div className="flex justify-center mb-4">{item.icon}</div>
+                        <div key={item.title} className="opacity-0 animate-fade-in-up p-8 bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-lg shadow-lg" style={{ animationDelay: `${500 + index * 150}ms` }}>
+                            <div className="flex justify-center mb-4 text-[var(--color-accent)]">{React.cloneElement(item.icon, { className: 'w-8 h-8' })}</div>
                             <h4 className="text-xl font-semibold text-[var(--color-text-primary)] mb-2">{item.title}</h4>
                             <p className="text-[var(--color-text-secondary)]">{item.description}</p>
                         </div>
@@ -117,7 +87,7 @@ function About() {
                 <h3 className="opacity-0 animate-fade-in-up text-3xl font-bold text-[var(--color-text-primary)] text-center mb-12" style={{ animationDelay: '300ms' }}>{t('about.journeyTitle')}</h3>
                 <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '500ms' }}>
                     {timelineData.map((item, index) => (
-                        <TimelineItem key={index} item={item} />
+                        <TimelineItem key={index} item={item} isLast={index === timelineData.length - 1} />
                     ))}
                 </div>
             </div>
