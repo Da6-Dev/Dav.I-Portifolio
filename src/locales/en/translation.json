@@ -1,0 +1,18 @@
+{
+    "navbar": {
+        "home": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "skills": "Skills",
+        "contact": "Contact"
+    },
+    "home": {
+        "greeting": "Davi Passos",
+        "subheading1": "Web Developer",
+        "subheading2": "UI/UX Enthusiast",
+        "subheading3": "Unity Developer",
+        "subheading4": "Turning Ideas into Reality",
+        "description": "I'm a passionate developer focused on creating engaging and functional digital experiences. Let's build something amazing together!",
+        "button": "See my projects"
+    }
+}

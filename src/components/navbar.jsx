@@ -1,7 +1,9 @@
 // src/components/navbar.jsx
 import React, { useState, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher'; // Assuming this file exists from the previous step
 import {
     HomeIcon as HomeOutline,
     UserIcon as InfoOutline,
@@ -18,23 +20,25 @@ import {
     EnvelopeIcon as ContactSolid,
 } from '@heroicons/react/24/solid';
 
-const navItems = [
-    { name: 'Home', path: '/', IconOutline: HomeOutline, IconSolid: HomeSolid },
-    { name: 'Sobre', path: '/about', IconOutline: InfoOutline, IconSolid: InfoSolid },
-    { name: 'Projetos', path: '/projects', IconOutline: ProjectsOutline, IconSolid: ProjectsSolid },
-    { name: 'Habilidades', path: '/skills', IconOutline: SkillsOutline, IconSolid: SkillsSolid },
-    { name: 'Contato', path: '/contact', IconOutline: ContactOutline, IconSolid: ContactSolid },
-];
-
-const ITEM_HEIGHT_REM = 3.5; // h-14
-
 function Navbar() {
+    const { t } = useTranslation();
     const [isExpanded, setIsExpanded] = useState(false);
     const location = useLocation();
 
+    // **THE FIX IS HERE**
+    // Wrap navItems in its own useMemo. It will only be recreated when the language changes.
+    const navItems = useMemo(() => [
+        { name: t('navbar.home'), path: '/', IconOutline: HomeOutline, IconSolid: HomeSolid },
+        { name: t('navbar.about'), path: '/about', IconOutline: InfoOutline, IconSolid: InfoSolid },
+        { name: t('navbar.projects'), path: '/projects', IconOutline: ProjectsOutline, IconSolid: ProjectsSolid },
+        { name: t('navbar.skills'), path: '/skills', IconOutline: SkillsOutline, IconSolid: SkillsSolid },
+        { name: t('navbar.contact'), path: '/contact', IconOutline: ContactOutline, IconSolid: ContactSolid },
+    ], [t]);
+
+    // Now, this useMemo hook works correctly because 'navItems' is stable across re-renders.
     const activeIndex = useMemo(() =>
         navItems.findIndex(item => location.pathname === item.path),
-        [location.pathname]
+        [location.pathname, navItems]
     );
 
     return (
@@ -53,22 +57,22 @@ function Navbar() {
                 </div>
 
                 {/* Navegação */}
+                //...
                 <nav className="flex-1 flex items-center justify-center px-4">
                     <ul className="w-full space-y-2">
                         {navItems.map((item, index) => {
-                            const isActive = activeIndex === index;
+                            const isActive = activeIndex === index; // Use activeIndex here
                             const Icon = isActive ? item.IconSolid : item.IconOutline;
 
-                            const linkClasses = `
-                                flex items-center h-14 w-full rounded-lg transition-colors duration-200 group
+                            const linkClasses = `flex items-center h-14 w-full rounded-lg transition-colors duration-200 group
                                 ${isActive
-                                    ? 'bg-[var(--color-accent)] text-[var(--color-accent-text)] shadow-lg'
-                                    : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] hover:text-[var(--color-text-primary)]'
+                                        ? 'bg-[var(--color-accent)] text-[var(--color-accent-text)] shadow-lg'
+                                        : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] hover:text-[var(--color-text-primary)]'
                                 }
                             `;
 
                             return (
-                                <li key={item.name}>
+                                <li key={index}> {/* Use index for a stable key */}
                                     <Link to={item.path} className={linkClasses}>
                                         <div className={`flex items-center transition-all duration-300 ease-in-out ${isExpanded ? 'w-full pl-5' : 'w-full justify-center'}`}>
                                             <Icon className="h-6 w-6 flex-shrink-0" />
@@ -84,8 +88,9 @@ function Navbar() {
                 </nav>
 
                 {/* Rodapé */}
-                <div className="flex justify-center p-4">
+                <div className="flex items-center justify-center gap-4 p-4">
                     <ThemeToggle />
+                    <LanguageSwitcher />
                 </div>
             </div>
         </aside>

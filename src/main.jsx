@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react'; // Importe o Suspense
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.jsx';
-import './index.css'; // Sua importação do Tailwind CSS
+import './index.css';
 
 // Importe suas páginas
 import Home from './pages/home.jsx';
@@ -13,34 +13,18 @@ import Skills from './pages/skills.jsx';
 import Contact from './pages/contact.jsx';
 import { ThemeProvider } from './context/ThemeProvider';
 
-// Crie o roteador com a definição das rotas
+import './i18n'; // Importe a configuração do i18next
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // O elemento principal (nosso layout com Navbar)
-    // errorElement: <ErrorPage />, // Opcional: uma página de erro
+    element: <App />,
     children: [
-      // As rotas filhas serão renderizadas dentro do <Outlet /> do App
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "about",
-        element: <About />,
-      },
-      {
-        path: "projects",
-        element: <Projects />,
-      },
-      {
-        path: "skills",
-        element: <Skills />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
-      },
+      { path: "/", element: <Home /> },
+      { path: "about", element: <About /> },
+      { path: "projects", element: <Projects /> },
+      { path: "skills", element: <Skills /> },
+      { path: "contact", element: <Contact /> },
     ],
   },
 ]);
@@ -48,7 +32,10 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
-      <RouterProvider router={router} />
+      {/* O Suspense é usado para mostrar um fallback enquanto as traduções carregam */}
+      <Suspense fallback="Carregando...">
+        <RouterProvider router={router} />
+      </Suspense>
     </ThemeProvider>
   </React.StrictMode>
 );
