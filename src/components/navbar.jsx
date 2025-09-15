@@ -41,13 +41,13 @@ function Navbar() {
     return (
         <>
             {/* ====== NAVEGAÇÃO LATERAL (DESKTOP) ====== */}
-            {/* 'hidden md:fixed' -> Escondido em telas pequenas, fixo a partir de telas médias */}
+            {/* A CORREÇÃO ESTÁ AQUI: trocamos 'md:fixed' por 'md:flex' para torná-lo visível */}
             <aside
-                className={`hidden md:fixed top-0 left-0 h-screen z-50 bg-[var(--color-bg-secondary)] border-r border-[var(--color-border)] transition-all duration-300 ease-in-out ${isExpanded ? 'w-56' : 'w-24'}`}
+                className={`hidden md:flex fixed top-0 left-0 h-screen z-50 bg-[var(--color-bg-secondary)] border-r border-[var(--color-border)] transition-all duration-300 ease-in-out ${isExpanded ? 'w-56' : 'w-24'}`}
                 onMouseEnter={() => setIsExpanded(true)}
                 onMouseLeave={() => setIsExpanded(false)}
             >
-                <div className="flex flex-col h-full">
+                <div className="flex flex-col h-full w-full"> {/* Adicionado w-full para garantir que o conteúdo interno ocupe o aside */}
                     {/* Logo */}
                     <div className="flex items-center justify-center h-24">
                         <StarIcon className="h-8 w-8 text-[var(--color-accent)] flex-shrink-0 transition-transform duration-300 animate-pulse-slow" />
@@ -82,7 +82,6 @@ function Navbar() {
             </aside>
 
             {/* ====== NAVEGAÇÃO INFERIOR (MOBILE) ====== */}
-            {/* 'fixed md:hidden' -> Fixo em telas pequenas, escondido a partir de telas médias */}
             <nav className="fixed bottom-0 left-0 right-0 h-20 bg-[var(--color-bg-secondary)] border-t border-[var(--color-border)] z-50 md:hidden">
                 <ul className="flex justify-around items-center h-full">
                     {navItems.map((item, index) => {
