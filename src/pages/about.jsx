@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 import {
     UserCircleIcon,
     PuzzlePieceIcon,
@@ -35,6 +36,7 @@ const TimelineItem = ({ item, isLast }) => (
 
 function About() {
     const { t } = useTranslation();
+    useDocumentTitle(`Davi Passos | ${t('titles.about')}`);
 
     const philosophyData = [
         { icon: <UserCircleIcon />, title: t('about.philosophy1Title'), description: t('about.philosophy1Desc') },
@@ -62,7 +64,7 @@ function About() {
                         <p>{t('about.bio1')}</p>
                         <p>{t('about.bio2')}</p>
                     </div>
-                     <Link to="/contact" className="mt-8 inline-block bg-[var(--color-accent)] text-[var(--color-accent-text)] font-bold py-3 px-8 rounded-full text-lg hover:bg-[var(--color-accent-hover)] transition-transform transform hover:scale-105 shadow-lg">
+                    <Link to="/contact" className="mt-8 inline-block bg-[var(--color-accent)] text-[var(--color-accent-text)] font-bold py-3 px-8 rounded-full text-lg hover:bg-[var(--color-accent-hover)] transition-transform transform hover:scale-105 shadow-lg">
                         {t('about.button')}
                     </Link>
                 </div>

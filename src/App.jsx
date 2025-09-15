@@ -21,11 +21,7 @@ function App() {
     countUniqueView();
   }, []);
 
-  // **CLASSES DE LAYOUT ATUALIZADAS**
-  // Em telas pequenas (mobile), adiciona um padding-bottom (pb-24)
-  // Em telas médias e maiores (desktop), adiciona a margem à esquerda (md:ml-24)
   const mainClasses = `
-    transition-all duration-300
     pb-24 
     ${!isHomePage ? 'md:ml-24' : ''}
   `;

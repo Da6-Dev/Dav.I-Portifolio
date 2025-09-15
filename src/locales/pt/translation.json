@@ -55,7 +55,7 @@
     "skills": {
         "title": "Painel de Habilidades",
         "subtitle": "As tecnologias e ferramentas que utilizo para transformar ideias em realidade.",
-        "frontend": "Front-end",
+        "frontend": "Desenvolvimento Front-end",
         "frontendHtmlDesc": "Estruturação de páginas web semânticas e acessíveis.",
         "frontendCssDesc": "Estilização e criação de layouts modernos e responsivos.",
         "frontendJsDesc": "Manipulação do DOM, assincronicidade e lógica de programação.",
@@ -63,13 +63,13 @@
         "frontendFlutterDesc": "Desenvolvimento de aplicações nativas para múltiplas plataformas.",
         "frontendBootstrapDesc": "Criação de designs responsivos com um framework consolidado.",
         "frontendTailwindDesc": "Estilização rápida e customizável com classes utilitárias.",
-        "backend": "Back-end & Databases",
+        "backend": "Banco de Dados & Back-end",
         "backendNodeDesc": "Construção de APIs RESTful eficientes com o ecossistema JavaScript.",
         "backendPhpDesc": "Desenvolvimento de aplicações web dinâmicas do lado do servidor.",
         "backendPythonDesc": "Utilização em scripts, automação e desenvolvimento de back-end.",
         "backendMysqlDesc": "Modelagem e gerenciamento de bancos de dados relacionais.",
         "backendMongoDesc": "Utilização de bancos de dados NoSQL para flexibilidade.",
-        "gamedev": "Game Development",
+        "gamedev": "Desenvolvimento de Jogos",
         "gamedevUnityDesc": "Desenvolvimento de jogos 2D e 3D para múltiplas plataformas.",
         "gamedevGodotDesc": "Criação de jogos com uma engine de código aberto e versátil.",
         "gamedevCsharpDesc": "Linguagem principal para scripting de jogos na Unity.",
@@ -94,5 +94,12 @@
         "formStatusSuccess": "Mensagem enviada com sucesso!",
         "formStatusError": "Ocorreu um erro.",
         "formStatusNetworkError": "Ocorreu um erro de rede. Tente novamente."
+    },
+    "titles": {
+        "home": "Home",
+        "about": "Sobre Mim",
+        "projects": "Projetos",
+        "skills": "Habilidades",
+        "contact": "Contato"
     }
 }

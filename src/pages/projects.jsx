@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EyeIcon } from '@heroicons/react/24/solid';
 import { SiGithub } from 'react-icons/si';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 
 const GITHUB_USERNAME = "Da6-Dev";
 
@@ -20,6 +21,7 @@ const ProjectCardSkeleton = () => (
 
 const ProjectCard = ({ project, index }) => {
   const { t, i18n } = useTranslation();
+  useDocumentTitle(`Davi Passos | ${t('titles.projects')}`);
 
   // **LÓGICA CORRIGIDA**
   // 1. Começamos com a descrição do GitHub como o valor inicial e fallback.
@@ -71,35 +73,35 @@ const ProjectCard = ({ project, index }) => {
   };
 
   return (
-    <div
-      className="opacity-0 animate-fade-in-up flex flex-col bg-[var(--color-bg-card)] backdrop-blur-sm border border-[var(--color-border)] rounded-2xl overflow-hidden shadow-md transition-transform duration-300 hover:scale-[1.03] hover:shadow-xl"
-      style={{ animationDelay: `${index * 150}ms` }}
-    >
-      <div className="relative h-56 w-full overflow-hidden">
-        <img src={imageUrl} alt={`Capa do projeto ${project.name}`} className="w-full h-full object-cover" onError={handleImageError} />
-      </div>
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-2">{project.name}</h3>
-        <p className="text-[var(--color-text-secondary)] text-sm mb-4 flex-grow">
-          {description || t('projects.noDescription')}
-        </p>
-        <div className="flex flex-wrap gap-2 my-4">
-          {project.topics.map(tag => (
-            <span key={tag} className="bg-[var(--color-bg-secondary)] text-xs text-[var(--color-text-secondary)] px-3 py-1 rounded-full border border-[var(--color-border)]">{tag}</span>
-          ))}
+      <div
+        className="opacity-0 animate-fade-in-up flex flex-col bg-[var(--color-bg-card)] backdrop-blur-sm border border-[var(--color-border)] rounded-2xl overflow-hidden shadow-md transition-transform duration-300 hover:scale-[1.03] hover:shadow-xl"
+        style={{ animationDelay: `${index * 150}ms` }}
+      >
+        <div className="relative h-56 w-full overflow-hidden">
+          <img src={imageUrl} alt={`Capa do projeto ${project.name}`} className="w-full h-full object-cover" onError={handleImageError} />
         </div>
-        <div className="flex justify-between items-center mt-auto pt-4 border-t border-[var(--color-border)]">
-          <a href={project.html_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors font-semibold">
-            <SiGithub className="h-5 w-5" /> {t('projects.githubButton')}
-          </a>
-          {project.homepage && (
-            <a href={project.homepage} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[var(--color-accent)] hover:opacity-80 transition-opacity font-semibold">
-              <EyeIcon className="h-5 w-5" /> {t('projects.liveButton')}
+        <div className="p-6 flex flex-col flex-grow">
+          <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-2">{project.name}</h3>
+          <p className="text-[var(--color-text-secondary)] text-sm mb-4 flex-grow">
+            {description || t('projects.noDescription')}
+          </p>
+          <div className="flex flex-wrap gap-2 my-4">
+            {project.topics.map(tag => (
+              <span key={tag} className="bg-[var(--color-bg-secondary)] text-xs text-[var(--color-text-secondary)] px-3 py-1 rounded-full border border-[var(--color-border)]">{tag}</span>
+            ))}
+          </div>
+          <div className="flex justify-between items-center mt-auto pt-4 border-t border-[var(--color-border)]">
+            <a href={project.html_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors font-semibold">
+              <SiGithub className="h-5 w-5" /> {t('projects.githubButton')}
             </a>
-          )}
+            {project.homepage && (
+              <a href={project.homepage} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[var(--color-accent)] hover:opacity-80 transition-opacity font-semibold">
+                <EyeIcon className="h-5 w-5" /> {t('projects.liveButton')}
+              </a>
+            )}
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 

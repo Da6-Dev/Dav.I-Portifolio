@@ -104,3 +104,13 @@ body {
   position: absolute; border-radius: 50%; opacity: 0.3;
   animation: move-blob 20s infinite ease-in-out;
 }
+
+/* 5. CORREÇÃO PARA O FLASH DA ANIMAÇÃO */
+/* Garante que o contêiner da página comece invisível */
+.page-wrapper {
+  opacity: 0;
+}
+
+.page-transition-wrapper > * {
+  opacity: 0;
+}

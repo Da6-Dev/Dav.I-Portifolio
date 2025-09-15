@@ -94,5 +94,12 @@
         "formStatusSuccess": "Message sent successfully!",
         "formStatusError": "An error occurred.",
         "formStatusNetworkError": "A network error occurred. Please try again."
+    },
+    "titles": {
+        "home": "Home",
+        "about": "About Me",
+        "projects": "Projects",
+        "skills": "Skills",
+        "contact": "Contact"
     }
 }
