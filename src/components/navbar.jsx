@@ -57,7 +57,6 @@ function Navbar() {
                 </div>
 
                 {/* Navegação */}
-                //...
                 <nav className="flex-1 flex items-center justify-center px-4">
                     <ul className="w-full space-y-2">
                         {navItems.map((item, index) => {
@@ -66,8 +65,8 @@ function Navbar() {
 
                             const linkClasses = `flex items-center h-14 w-full rounded-lg transition-colors duration-200 group
                                 ${isActive
-                                        ? 'bg-[var(--color-accent)] text-[var(--color-accent-text)] shadow-lg'
-                                        : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] hover:text-[var(--color-text-primary)]'
+                                    ? 'bg-[var(--color-accent)] text-[var(--color-accent-text)] shadow-lg'
+                                    : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-bg)] hover:text-[var(--color-text-primary)]'
                                 }
                             `;
 
@@ -88,9 +87,10 @@ function Navbar() {
                 </nav>
 
                 {/* Rodapé */}
-                <div className="flex items-center justify-center gap-4 p-4">
+                <div className={`flex items-center justify-center p-4 ${isExpanded ? 'flex-row gap-4' : 'flex-col gap-4'
+                    }`}>
                     <ThemeToggle />
-                    <LanguageSwitcher />
+                    <LanguageSwitcher isExpanded={isExpanded} />
                 </div>
             </div>
         </aside>
