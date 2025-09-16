@@ -3,7 +3,7 @@
   <h1><b>Portfólio Pessoal v2</b></h1>
   <p>Uma aplicação web moderna, dinâmica e multilíngue para exibir os meus projetos e competências.</p>
   
-  <a href="[LINK_PARA_O_SEU_SITE_AQUI]">
+  <a href="https://davipsss.netlify.app">
     <img src="https://img.shields.io/badge/Ver%20Ao%20Vivo-%233b82f6?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo">
   </a>
 </div>
@@ -13,7 +13,7 @@
 <div align="center">
   <em>Uma pré-visualização do portfólio em ação.</em>
   <br><br>
-  <img src="[LINK_PARA_A_IMAGEM_OU_GIF_AQUI]" alt="Pré-visualização do Portfólio">
+  <img src="https://github.com/Da6-Dev/Dav.I-Portifolio/blob/master/cover.png?raw=true" alt="Pré-visualização do Portfólio">
 </div>
 
 ---
