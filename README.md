@@ -13,7 +13,7 @@
 <div align="center">
   <em>Uma pré-visualização do portfólio em ação.</em>
   <br><br>
-  <img src="https://github.com/Da6-Dev/Dav.I-Portifolio/blob/master/cover.png?raw=true" alt="Pré-visualização do Portfólio">
+  <img src="https://github.com/Da6-Dev/Dav.I-Portifolio/blob/master/cover.png?raw=true" alt="Pré visualização do Portfólio">
 </div>
 
 ---
