@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Da6-Dev/dav-i/main/public/apple-touch-icon.png" alt="Logo" width="100">
+  <img src="https://github.com/Da6-Dev/Dav.I-Portifolio/blob/master/public/apple-touch-icon.png?raw=true" alt="Logo" width="100">
   <h1><b>Portfólio Pessoal v2</b></h1>
   <p>Uma aplicação web moderna, dinâmica e multilíngue para exibir os meus projetos e competências.</p>
   
