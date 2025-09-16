@@ -1,27 +1,25 @@
+// src/firebase.js
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, runTransaction} from "firebase/firestore";
+import { getFirestore, doc, runTransaction } from "firebase/firestore";
 
+// As chaves agora são lidas de forma segura a partir das variáveis de ambiente
 const firebaseConfig = {
-    apiKey: "AIzaSyB-QkWHhcbJQVL6ohdmqC7RqNC2O5VzVRM",
-    authDomain: "meu-portfolio-stats.firebaseapp.com",
-    projectId: "meu-portfolio-stats",
-    storageBucket: "meu-portfolio-stats.firebasestorage.app",
-    messagingSenderId: "73774267213",
-    appId: "1:73774267213:web:f88f55d5838fb9b90c1504",
-    measurementId: "G-01LX7HBSLG"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Inicializa o Firebase
-
+// Cole o ID do seu documento aqui (isto não é um segredo)
 export const countersDocId = "ypyZjn0u4EHWrweBKWbo";
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-
 const countersDocRef = doc(db, 'counters', countersDocId);
 
-// **FUNÇÕES DE SERVIÇO ATUALIZADAS COM TRANSAÇÕES**
-
+// Funções de serviço (mantêm-se iguais)
 export const incrementView = async () => {
     try {
         await runTransaction(db, async (transaction) => {
@@ -29,9 +27,7 @@ export const incrementView = async () => {
             if (!counterDoc.exists()) {
                 throw "O documento de contadores não existe!";
             }
-            // Lê o valor atual e soma 1
             const newViews = (counterDoc.data().views || 0) + 1;
-            // Envia o objeto completo para atualização
             transaction.update(countersDocRef, { views: newViews });
         });
         return true;
@@ -48,9 +44,7 @@ export const incrementLike = async () => {
             if (!counterDoc.exists()) {
                 throw "O documento de contadores não existe!";
             }
-            // Lê o valor atual e soma 1
             const newLikes = (counterDoc.data().likes || 0) + 1;
-            // Envia o objeto completo para atualização
             transaction.update(countersDocRef, { likes: newLikes });
         });
         return true;
