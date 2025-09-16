@@ -114,3 +114,68 @@ body {
 .page-transition-wrapper > * {
   opacity: 0;
 }
+
+/* 6. ESTILOS PARA O SCROLL HORIZONTAL DE FILTROS (VERSÃO MELHORADA) */
+
+/* Esconde a barra de scroll padrão */
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Container para o efeito de gradiente (fade) */
+.scroll-fade-container {
+  position: relative;
+}
+
+/* Pseudo-elementos que criam o gradiente */
+.scroll-fade-container::before,
+.scroll-fade-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3rem;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  /* COMEÇAM INVISÍVEIS */
+  opacity: 0;
+}
+
+/* Gradiente da esquerda */
+.scroll-fade-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg), transparent);
+}
+
+/* Gradiente da direita */
+.scroll-fade-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg), transparent);
+}
+
+/* CLASSES PARA ATIVAR OS GRADIENTES */
+.scroll-fade-container.show-fade-left::before {
+  opacity: 1;
+}
+.scroll-fade-container.show-fade-right::after {
+  opacity: 1;
+}
+
+.markdown-body {
+  background-color: transparent !important;
+}
+
+html.dark .markdown-body {
+  /* Força a cor do texto principal para a cor primária do tema escuro */
+  color: var(--color-text-primary) !important;
+}
+
+html.dark .markdown-body table tr {
+  /* Remove o fundo branco das linhas da tabela */
+  background-color: transparent !important;
+}
+
+html.dark .markdown-body table th,
+html.dark .markdown-body table td {
+  /* Força a borda da tabela a usar a cor de borda do tema escuro */
+  border-color: var(--color-border) !important;
+}
