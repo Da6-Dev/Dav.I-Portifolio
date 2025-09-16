@@ -72,7 +72,6 @@ function ProjectDetail() {
                     </div>
                 </div>
 
-                {/* A classe 'markdown-body' aplica os estilos do GitHub. O CSS que adicionámos irá corrigir o fundo. */}
                 <article className="markdown-body">
                     <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
                         {readme}

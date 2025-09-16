@@ -179,3 +179,145 @@ html.dark .markdown-body table td {
   /* Força a borda da tabela a usar a cor de borda do tema escuro */
   border-color: var(--color-border) !important;
 }
+
+/* Força o fundo a ser transparente */
+.markdown-body {
+  background-color: transparent !important;
+}
+
+html.dark .markdown-body {
+  /* Cor base do texto */
+  color: var(--color-text-secondary) !important;
+}
+
+/* Títulos */
+html.dark .markdown-body h1,
+html.dark .markdown-body h2,
+html.dark .markdown-body h3,
+html.dark .markdown-body h4,
+html.dark .markdown-body h5,
+html.dark .markdown-body h6 {
+  color: var(--color-text-primary) !important;
+  border-bottom-color: var(--color-border) !important; /* Cor da linha debaixo dos títulos */
+}
+
+/* Links */
+html.dark .markdown-body a {
+  color: var(--color-accent) !important;
+}
+
+/* Tabelas */
+html.dark .markdown-body table tr {
+  background-color: transparent !important;
+  border-top-color: var(--color-border) !important;
+}
+
+html.dark .markdown-body table th,
+html.dark .markdown-body table td {
+  border-color: var(--color-border) !important;
+}
+
+/* Blocos de Citação */
+html.dark .markdown-body blockquote {
+  color: var(--color-text-secondary) !important;
+  border-left-color: var(--color-border-strong) !important;
+}
+
+/* Blocos de Código */
+html.dark .markdown-body code,
+html.dark .markdown-body pre {
+  background-color: var(--color-bg-secondary) !important;
+  color: var(--color-text-secondary) !important;
+}
+
+/* Linhas Horizontais */
+html.dark .markdown-body hr {
+  background-color: var(--color-border) !important;
+}
+
+/* 8. ESTILOS COMPLETOS E REFINADOS PARA O MARKDOWN */
+
+/* Garante que o fundo seja transparente para herdar o tema do site */
+.markdown-body {
+  background-color: transparent !important;
+}
+
+/* --- ESTILOS PARA O TEMA ESCURO --- */
+
+html.dark .markdown-body {
+  /* Cor base do texto */
+  color: var(--color-text-primary) !important;
+}
+
+/* Títulos */
+html.dark .markdown-body h1,
+html.dark .markdown-body h2,
+html.dark .markdown-body h3,
+html.dark .markdown-body h4,
+html.dark .markdown-body h5,
+html.dark .markdown-body h6 {
+  color: var(--color-text-primary) !important;
+  border-bottom-color: var(--color-border) !important;
+}
+
+/* Links */
+html.dark .markdown-body a {
+  color: var(--color-accent) !important;
+}
+
+/* Tabelas */
+html.dark .markdown-body table tr {
+  background-color: transparent !important;
+  border-top-color: var(--color-border) !important;
+}
+html.dark .markdown-body table th,
+html.dark .markdown-body table td {
+  border-color: var(--color-border) !important;
+}
+
+/* --- NOVAS REGRAS PARA CÓDIGOS E LISTAS --- */
+
+/* Blocos de citação (blockquote) */
+html.dark .markdown-body blockquote {
+  color: var(--color-text-secondary) !important;
+  border-left-color: var(--color-border-strong) !important;
+}
+
+/* Linha horizontal (hr) */
+html.dark .markdown-body hr {
+  background-color: var(--color-border) !important;
+  height: 2px !important;
+}
+
+/* Listas (ul, ol) */
+html.dark .markdown-body ul,
+html.dark .markdown-body ol {
+  list-style: revert !important; /* Faz com que os marcadores/números da lista apareçam */
+  margin-left: 1.5rem !important;
+}
+
+/* Código inline (pequenos trechos) */
+html.dark .markdown-body code {
+  background-color: var(--color-bg-input) !important;
+  color: var(--color-text-secondary) !important;
+  border-radius: 6px !important;
+}
+
+/* Blocos de código (como comandos bash) */
+html.dark .markdown-body pre {
+  background-color: var(--color-bg-secondary) !important; /* Cor de fundo que se destaca */
+  border: 1px solid var(--color-border) !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+}
+
+html.dark .markdown-body pre code {
+  background-color: transparent !important; /* Remove o fundo duplo no código dentro do bloco */
+}
+
+.markdown-body .flex-row {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo em ecrãs pequenos */
+  align-items: center; /* Alinha os itens verticalmente ao centro */
+  gap: 1rem; /* Adiciona um espaçamento entre os itens */
+}
