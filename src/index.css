@@ -57,7 +57,7 @@ body {
 }
 
 
-/* 3. ANIMAÇÕES (As que você já usa + novas) */
+/* 3. ANIMAÇÕES */
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -105,17 +105,13 @@ body {
   animation: move-blob 20s infinite ease-in-out;
 }
 
-/* 5. CORREÇÃO PARA O FLASH DA ANIMAÇÃO */
-/* Garante que o contêiner da página comece invisível */
-.page-wrapper {
-  opacity: 0;
-}
-
+/* 4. CORREÇÃO PARA O FLASH DA ANIMAÇÃO */
+.page-wrapper,
 .page-transition-wrapper > * {
   opacity: 0;
 }
 
-/* 6. ESTILOS PARA O SCROLL HORIZONTAL DE FILTROS (VERSÃO MELHORADA) */
+/* 5. ESTILOS PARA O SCROLL HORIZONTAL DE FILTROS */
 
 /* Esconde a barra de scroll padrão */
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -126,7 +122,6 @@ body {
   position: relative;
 }
 
-/* Pseudo-elementos que criam o gradiente */
 .scroll-fade-container::before,
 .scroll-fade-container::after {
   content: '';
@@ -136,188 +131,100 @@ body {
   width: 3rem;
   pointer-events: none;
   transition: opacity 0.2s ease-in-out;
-  /* COMEÇAM INVISÍVEIS */
-  opacity: 0;
+  opacity: 0; /* Começam invisíveis */
 }
 
-/* Gradiente da esquerda */
 .scroll-fade-container::before {
   left: 0;
   background: linear-gradient(to right, var(--color-bg), transparent);
 }
 
-/* Gradiente da direita */
 .scroll-fade-container::after {
   right: 0;
   background: linear-gradient(to left, var(--color-bg), transparent);
 }
 
-/* CLASSES PARA ATIVAR OS GRADIENTES */
-.scroll-fade-container.show-fade-left::before {
-  opacity: 1;
-}
+.scroll-fade-container.show-fade-left::before,
 .scroll-fade-container.show-fade-right::after {
   opacity: 1;
 }
 
+/* 6. ESTILOS PARA CONTEÚDO EM MARKDOWN */
+
+/* Base para ambos os temas */
 .markdown-body {
   background-color: transparent !important;
 }
 
+/* Regras específicas para o TEMA ESCURO */
 html.dark .markdown-body {
-  /* Força a cor do texto principal para a cor primária do tema escuro */
+  /* Cores base */
   color: var(--color-text-primary) !important;
+
+  /* Títulos */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text-primary) !important;
+    border-bottom-color: var(--color-border) !important;
+  }
+
+  /* Links */
+  a {
+    color: var(--color-accent) !important;
+  }
+
+  /* Tabelas */
+  table tr {
+    background-color: transparent !important;
+    border-top-color: var(--color-border) !important;
+  }
+  table th,
+  table td {
+    border-color: var(--color-border) !important;
+  }
+
+  /* Blocos de citação */
+  blockquote {
+    color: var(--color-text-secondary) !important;
+    border-left-color: var(--color-border-strong) !important;
+  }
+
+  /* Linha horizontal */
+  hr {
+    background-color: var(--color-border) !important;
+    height: 2px !important;
+  }
+
+  /* Listas */
+  ul, ol {
+    list-style: revert !important;
+    margin-left: 1.5rem !important;
+  }
+
+  /* Código inline */
+  code {
+    background-color: var(--color-bg-input) !important;
+    color: var(--color-text-secondary) !important;
+    border-radius: 6px !important;
+  }
+
+  /* Blocos de código */
+  pre {
+    background-color: var(--color-bg-secondary) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+  }
+
+  /* Remove fundo duplo no código dentro do <pre> */
+  pre code {
+    background-color: transparent !important;
+  }
 }
 
-html.dark .markdown-body table tr {
-  /* Remove o fundo branco das linhas da tabela */
-  background-color: transparent !important;
-}
-
-html.dark .markdown-body table th,
-html.dark .markdown-body table td {
-  /* Força a borda da tabela a usar a cor de borda do tema escuro */
-  border-color: var(--color-border) !important;
-}
-
-/* Força o fundo a ser transparente */
-.markdown-body {
-  background-color: transparent !important;
-}
-
-html.dark .markdown-body {
-  /* Cor base do texto */
-  color: var(--color-text-secondary) !important;
-}
-
-/* Títulos */
-html.dark .markdown-body h1,
-html.dark .markdown-body h2,
-html.dark .markdown-body h3,
-html.dark .markdown-body h4,
-html.dark .markdown-body h5,
-html.dark .markdown-body h6 {
-  color: var(--color-text-primary) !important;
-  border-bottom-color: var(--color-border) !important; /* Cor da linha debaixo dos títulos */
-}
-
-/* Links */
-html.dark .markdown-body a {
-  color: var(--color-accent) !important;
-}
-
-/* Tabelas */
-html.dark .markdown-body table tr {
-  background-color: transparent !important;
-  border-top-color: var(--color-border) !important;
-}
-
-html.dark .markdown-body table th,
-html.dark .markdown-body table td {
-  border-color: var(--color-border) !important;
-}
-
-/* Blocos de Citação */
-html.dark .markdown-body blockquote {
-  color: var(--color-text-secondary) !important;
-  border-left-color: var(--color-border-strong) !important;
-}
-
-/* Blocos de Código */
-html.dark .markdown-body code,
-html.dark .markdown-body pre {
-  background-color: var(--color-bg-secondary) !important;
-  color: var(--color-text-secondary) !important;
-}
-
-/* Linhas Horizontais */
-html.dark .markdown-body hr {
-  background-color: var(--color-border) !important;
-}
-
-/* 8. ESTILOS COMPLETOS E REFINADOS PARA O MARKDOWN */
-
-/* Garante que o fundo seja transparente para herdar o tema do site */
-.markdown-body {
-  background-color: transparent !important;
-}
-
-/* --- ESTILOS PARA O TEMA ESCURO --- */
-
-html.dark .markdown-body {
-  /* Cor base do texto */
-  color: var(--color-text-primary) !important;
-}
-
-/* Títulos */
-html.dark .markdown-body h1,
-html.dark .markdown-body h2,
-html.dark .markdown-body h3,
-html.dark .markdown-body h4,
-html.dark .markdown-body h5,
-html.dark .markdown-body h6 {
-  color: var(--color-text-primary) !important;
-  border-bottom-color: var(--color-border) !important;
-}
-
-/* Links */
-html.dark .markdown-body a {
-  color: var(--color-accent) !important;
-}
-
-/* Tabelas */
-html.dark .markdown-body table tr {
-  background-color: transparent !important;
-  border-top-color: var(--color-border) !important;
-}
-html.dark .markdown-body table th,
-html.dark .markdown-body table td {
-  border-color: var(--color-border) !important;
-}
-
-/* --- NOVAS REGRAS PARA CÓDIGOS E LISTAS --- */
-
-/* Blocos de citação (blockquote) */
-html.dark .markdown-body blockquote {
-  color: var(--color-text-secondary) !important;
-  border-left-color: var(--color-border-strong) !important;
-}
-
-/* Linha horizontal (hr) */
-html.dark .markdown-body hr {
-  background-color: var(--color-border) !important;
-  height: 2px !important;
-}
-
-/* Listas (ul, ol) */
-html.dark .markdown-body ul,
-html.dark .markdown-body ol {
-  list-style: revert !important; /* Faz com que os marcadores/números da lista apareçam */
-  margin-left: 1.5rem !important;
-}
-
-/* Código inline (pequenos trechos) */
-html.dark .markdown-body code {
-  background-color: var(--color-bg-input) !important;
-  color: var(--color-text-secondary) !important;
-  border-radius: 6px !important;
-}
-
-/* Blocos de código (como comandos bash) */
-html.dark .markdown-body pre {
-  background-color: var(--color-bg-secondary) !important; /* Cor de fundo que se destaca */
-  border: 1px solid var(--color-border) !important;
-  border-radius: 8px !important;
-  padding: 1rem !important;
-}
-
-html.dark .markdown-body pre code {
-  background-color: transparent !important; /* Remove o fundo duplo no código dentro do bloco */
-}
-
+/* 7. UTILITÁRIOS PARA MARKDOWN */
 .markdown-body .flex-row {
   display: flex;
-  flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo em ecrãs pequenos */
-  align-items: center; /* Alinha os itens verticalmente ao centro */
-  gap: 1rem; /* Adiciona um espaçamento entre os itens */
+  flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo */
+  align-items: center;
+  gap: 1rem;
 }
