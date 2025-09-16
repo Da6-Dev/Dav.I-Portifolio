@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import useDocumentTitle from '../hooks/useDocumentTitle';
+import useMetaTags from '../hooks/useMetaTags';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -15,13 +15,17 @@ const GITHUB_USERNAME = "Da6-Dev";
 
 function ProjectDetail() {
     const { projectName } = useParams();
-    const { i18n } = useTranslation(); // 1. Obtenha o objeto i18n
+    const { t, i18n } = useTranslation(); // 1. Obtenha o objeto i18n
     const [project, setProject] = useState(null);
     const [readme, setReadme] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useDocumentTitle(`Davi Passos | ${projectName}`);
+    useMetaTags(
+        project ? `Davi Passos | ${project.name}` : 'A carregar projeto...',
+        project ? project.description : t('siteDescription'),
+        project ? `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${projectName}/${project.default_branch}/cover.png` : 'URL_DA_IMAGEM_PADRAO'
+    );
 
     useEffect(() => {
         const fetchProjectData = async () => {

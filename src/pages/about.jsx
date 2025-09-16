@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import useDocumentTitle from '../hooks/useDocumentTitle';
+import useMetaTags from '../hooks/useMetaTags';
 import {
     UserCircleIcon,
     PuzzlePieceIcon,
@@ -36,7 +36,11 @@ const TimelineItem = ({ item, isLast }) => (
 
 function About() {
     const { t } = useTranslation();
-    useDocumentTitle(`Davi Passos | ${t('titles.about')}`);
+    useMetaTags(
+        `Davi Passos | ${t('titles.about')}`,
+        t('siteDescription'),
+        'https://github.com/Da6-Dev/Dav.I-Portifolio/blob/master/cover.png?raw=true' // Link para a sua imagem de preview
+    );
 
     const philosophyData = [
         { icon: <UserCircleIcon />, title: t('about.philosophy1Title'), description: t('about.philosophy1Desc') },

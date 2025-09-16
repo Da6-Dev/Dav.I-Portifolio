@@ -6,11 +6,15 @@ import { TypeAnimation } from 'react-type-animation';
 import { ArrowRightIcon, HeartIcon } from '@heroicons/react/24/solid';
 import Stats from '../components/Stats';
 import { incrementLike } from '../firebase';
-import useDocumentTitle from '../hooks/useDocumentTitle';
+import useMetaTags from '../hooks/useMetaTags';
 
 function Home() {
   const { t, i18n } = useTranslation();
-  useDocumentTitle(`Davi Passos | ${t('titles.home')}`);
+  useMetaTags(
+    `Davi Passos | ${t('titles.home')}`, 
+    t('siteDescription'),
+    'https://github.com/Da6-Dev/Dav.I-Portifolio/blob/master/cover.png?raw=true' // Link para a sua imagem de preview
+  );
   const currentLanguage = i18n.language;
 
   const [hasLiked, setHasLiked] = useState(false);

@@ -9,7 +9,7 @@ import {
     SiLinux, SiBootstrap, SiTailwindcss, SiArduino, SiFlutter
 } from 'react-icons/si';
 import { PiFileCSharp } from "react-icons/pi";
-import useDocumentTitle from '../hooks/useDocumentTitle';
+import useMetaTags from '../hooks/useMetaTags';
 
 // O SkillCard agora terá atributos 'data-tooltip-id' e 'data-tooltip-content'
 const SkillCard = ({ skill, index }) => (
@@ -29,7 +29,11 @@ const SkillCard = ({ skill, index }) => (
 
 function Skills() {
     const { t } = useTranslation();
-    useDocumentTitle(`Davi Passos | ${t('titles.skills')}`);
+    useMetaTags(
+        `Davi Passos | ${t('titles.skills')}`,
+        t('siteDescription'),
+        'https://github.com/Da6-Dev/Dav.I-Portifolio/blob/master/cover.png?raw=true' // Link para a sua imagem de preview
+    );
 
     const skillsData = {
         [t('skills.frontend')]: [
@@ -61,44 +65,44 @@ function Skills() {
     };
 
     return (
-            <section className="py-20 px-4 min-h-screen">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="opacity-0 animate-fade-in-up text-4xl font-bold text-[var(--color-text-primary)]">{t('skills.title')}</h2>
-                        <p className="opacity-0 animate-fade-in-up text-[var(--color-text-secondary)] mt-2 text-lg" style={{ animationDelay: '150ms' }}>
-                            {t('skills.subtitle')}
-                        </p>
-                    </div>
-                    <div className="space-y-12">
-                        {Object.entries(skillsData).map(([category, skills], categoryIndex) => (
-                            <div key={category} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${300 + categoryIndex * 200}ms` }}>
-                                <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-6">{category}</h3>
-                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                    {skills.map((skill, skillIndex) => (
-                                        <SkillCard key={skill.name} skill={skill} index={skillIndex} />
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+        <section className="py-20 px-4 min-h-screen">
+            <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-16">
+                    <h2 className="opacity-0 animate-fade-in-up text-4xl font-bold text-[var(--color-text-primary)]">{t('skills.title')}</h2>
+                    <p className="opacity-0 animate-fade-in-up text-[var(--color-text-secondary)] mt-2 text-lg" style={{ animationDelay: '150ms' }}>
+                        {t('skills.subtitle')}
+                    </p>
                 </div>
-                {/* 3. Renderize o componente Tooltip na página */}
-                <Tooltip
-                    id="skill-tooltip"
-                    place="bottom"
-                    style={{
-                        backgroundColor: "var(--color-bg-secondary)",
-                        color: "var(--color-text-primary)",
-                        border: "1px solid var(--color-border)",
-                        borderRadius: "8px",
-                        maxWidth: "250px",
-                        textAlign: "center",
-                        fontSize: "14px",
-                        padding: "8px 12px",
-                        boxShadow: "0 4px 14px rgba(0,0,0,0.1)"
-                    }}
-                />
-            </section>
+                <div className="space-y-12">
+                    {Object.entries(skillsData).map(([category, skills], categoryIndex) => (
+                        <div key={category} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${300 + categoryIndex * 200}ms` }}>
+                            <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-6">{category}</h3>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {skills.map((skill, skillIndex) => (
+                                    <SkillCard key={skill.name} skill={skill} index={skillIndex} />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            {/* 3. Renderize o componente Tooltip na página */}
+            <Tooltip
+                id="skill-tooltip"
+                place="bottom"
+                style={{
+                    backgroundColor: "var(--color-bg-secondary)",
+                    color: "var(--color-text-primary)",
+                    border: "1px solid var(--color-border)",
+                    borderRadius: "8px",
+                    maxWidth: "250px",
+                    textAlign: "center",
+                    fontSize: "14px",
+                    padding: "8px 12px",
+                    boxShadow: "0 4px 14px rgba(0,0,0,0.1)"
+                }}
+            />
+        </section>
     );
 }
 

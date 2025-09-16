@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react'; // 1. Impor
 import { useTranslation } from 'react-i18next';
 import { EyeIcon } from '@heroicons/react/24/solid';
 import { SiGithub } from 'react-icons/si';
-import useDocumentTitle from '../hooks/useDocumentTitle';
+import useMetaTags from '../hooks/useMetaTags';
 import { Link } from 'react-router-dom';
 
 const GITHUB_USERNAME = "Da6-Dev";
@@ -46,7 +46,11 @@ const ProjectCard = ({ project }) => {
 // --- Componente principal da página ---
 function Projects() {
   const { t } = useTranslation();
-  useDocumentTitle(`Davi Passos | ${t('titles.projects')}`);
+  useMetaTags(
+    `Davi Passos | ${t('titles.projects')}`, 
+    t('siteDescription'),
+    'https://github.com/Da6-Dev/Dav.I-Portifolio/blob/master/cover.png?raw=true' // Link para a sua imagem de preview
+  );
 
   const [allProjects, setAllProjects] = useState([]);
   const [loading, setLoading] = useState(true);

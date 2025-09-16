@@ -3,11 +3,15 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EnvelopeIcon } from '@heroicons/react/24/solid';
 import { SiLinkedin, SiGithub } from 'react-icons/si';
-import useDocumentTitle from '../hooks/useDocumentTitle';
+import useMetaTags from '../hooks/useMetaTags';
 
 function Contact() {
   const { t } = useTranslation();
-  useDocumentTitle(`Davi Passos | ${t('titles.contact')}`);
+  useMetaTags(
+    `Davi Passos | ${t('titles.contact')}`, 
+    t('siteDescription'),
+    'https://github.com/Da6-Dev/Dav.I-Portifolio/blob/master/cover.png?raw=true' // Link para a sua imagem de preview
+  );
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
 
